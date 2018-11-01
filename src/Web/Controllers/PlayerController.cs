@@ -17,9 +17,9 @@ namespace Web.Controllers
         }
 
         [HttpGet]
-        public async Task<List<Player>> AllPlayers()
+        public async Task<List<Player>> AllPlayers([FromQuery] int budget = 100)
         {
-            return await this.PlayerService.GetAllPlayersAsync();
+            return await this.PlayerService.GetAllPlayersAsync(budget);
         }
     }
 }

@@ -75,8 +75,8 @@ export default class PlayerList extends Component {
     }
   };
 
-  draftPlayer = (player, bid) => {
-    this.props.handleDraftPlayer(player, bid);
+  draftPlayer = (player, bid, owner) => {
+    this.props.handleDraftPlayer(player, bid, owner);
   };
 
   render() {
@@ -97,6 +97,7 @@ export default class PlayerList extends Component {
               <th>Team</th>
               <th>Maximum Value</th>
               <th>Bid</th>
+              <th />
               <th />
             </tr>
           </thead>

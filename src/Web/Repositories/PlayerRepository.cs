@@ -66,9 +66,9 @@ namespace Web.Repositories
             return players;
         }
 
-        public async Task<Dictionary<int, int>> GetPlayerAuctionValuesAsync()
+        public async Task<Dictionary<int, int>> GetPlayerAuctionValuesAsync(int budget)
         {
-            var document = await this.HtmlWeb.LoadFromWebAsync("https://draftwizard.fantasypros.com/auction/fp_nfl.jsp?tab=tabP&C=0&1B=0&2B=0&SS=0&3B=0&OF=0&SP=0&RP=0&BN=6&Util=0&P=0&CI=0&MI=0&IF=0&LF=0&CF=0&RF=0&scoring=STD&teams=12&tb=100#tabO");
+            var document = await this.HtmlWeb.LoadFromWebAsync($"https://draftwizard.fantasypros.com/auction/fp_nfl.jsp?tab=tabP&C=0&1B=0&2B=0&SS=0&3B=0&OF=0&SP=0&RP=0&BN=6&Util=0&P=0&CI=0&MI=0&IF=0&LF=0&CF=0&RF=0&scoring=STD&teams=12&tb={budget}#tabO");
 
             var auctionValueRows = document.DocumentNode.SelectNodes("//table[@id='OverallTable']//tbody//tr");
             var playerValues = new Dictionary<int, int>();

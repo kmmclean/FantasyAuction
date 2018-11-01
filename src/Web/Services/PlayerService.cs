@@ -14,10 +14,10 @@ namespace Web.Interfaces
             this.PlayerRepository = playerRepository;
         }
 
-        public async Task<List<Player>> GetAllPlayersAsync()
+        public async Task<List<Player>> GetAllPlayersAsync(int budget)
         {
             var players = await this.PlayerRepository.GetPlayersAsync();
-            var playerValues = await this.PlayerRepository.GetPlayerAuctionValuesAsync();
+            var playerValues = await this.PlayerRepository.GetPlayerAuctionValuesAsync(budget);
 
             var valuedPlayers = MergePlayerValues(players, playerValues);
 

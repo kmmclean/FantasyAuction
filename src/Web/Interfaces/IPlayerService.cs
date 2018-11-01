@@ -6,6 +6,6 @@ namespace Web.Interfaces
 {
     public interface IPlayerService
     {
-        Task<List<Player>> GetAllPlayersAsync();
+        Task<List<Player>> GetAllPlayersAsync(int budget);
     }
 }

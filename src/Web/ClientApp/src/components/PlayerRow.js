@@ -4,7 +4,8 @@ import { tierColors } from "../util/values";
 
 export default class PlayerRow extends Component {
   state = {
-    currentBid: 0
+    currentBid: 0,
+    owner: null
   };
 
   handleBidChange = e => {
@@ -15,8 +16,24 @@ export default class PlayerRow extends Component {
     }
   };
 
+  handleTeamChange = e => {
+    console.log(e.target.value);
+    this.setState({
+      owner: e.target.value
+    });
+  };
+
   handleDraftClick = e => {
-    this.props.draftPlayer(this.props.player, this.state.currentBid);
+    this.props.draftPlayer(
+      this.props.player,
+      this.state.currentBid,
+      this.state.owner
+    );
+
+    this.setState({
+      currentBid: 0,
+      owner: null
+    });
   };
 
   render() {
@@ -31,6 +48,14 @@ export default class PlayerRow extends Component {
     } = this.props.player;
     if (drafted) {
       return false;
+    }
+    const teamOptions = [<option key={0} />];
+    for (let i = 1; i <= 12; i++) {
+      teamOptions.push(
+        <option key={i} value={i}>
+          Team {i}
+        </option>
+      );
     }
     return (
       <tr style={{ backgroundColor: tierColors[tier % 4] }}>
@@ -50,7 +75,14 @@ export default class PlayerRow extends Component {
           />
         </td>
         <td>
-          <button className="btn btn-primary" onClick={this.handleDraftClick}>
+          <select onChange={this.handleTeamChange}>{teamOptions}</select>
+        </td>
+        <td>
+          <button
+            className="btn btn-primary"
+            onClick={this.handleDraftClick}
+            disabled={!this.state.owner}
+          >
             Draft
           </button>
         </td>

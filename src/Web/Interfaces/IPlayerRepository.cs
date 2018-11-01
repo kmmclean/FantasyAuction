@@ -8,6 +8,6 @@ namespace Web.Interfaces
     public interface IPlayerRepository
     {
         Task<Dictionary<int, Player>> GetPlayersAsync();
-        Task<Dictionary<int, int>> GetPlayerAuctionValuesAsync();
+        Task<Dictionary<int, int>> GetPlayerAuctionValuesAsync(int budget);
     }
 }

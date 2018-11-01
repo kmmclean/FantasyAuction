@@ -1,5 +1,7 @@
-async function getPlayers() {
-  const response = await fetch("api/players").catch(handleError);
+async function getPlayers(budget) {
+  const response = await fetch(`api/players?budget=${budget}`).catch(
+    handleError
+  );
   const players = await response.json();
   return players;
 }
